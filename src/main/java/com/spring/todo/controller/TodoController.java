@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.todo.model.TodoModel;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/api/todo")
@@ -76,5 +77,10 @@ public class TodoController {
 	@DeleteMapping("/clearCompleted")
 	public void clearCompletedTodo() {
 		todoList.removeIf(todo -> todo.isCompleted());
+	}
+
+	@GetMapping("/getCountNotCompleted")
+	public int getMethodName(@RequestParam String param) {
+		return getNotCompletedTodo().size();
 	}
 }
