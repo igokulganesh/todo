@@ -31,9 +31,7 @@ const TodoForm = ({ todos, setTodos }) => {
       <div className="checkbox-border-wrap">
         <span className="checkbox"></span>
       </div>
-
       <form onSubmit={handleSubmit}>
-        <label htmlFor="todoInput">Add New Todo</label>
         <input
           type="text"
           name="todo-input"

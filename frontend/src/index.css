@@ -9,15 +9,6 @@
 }
 
 :root {
-  /* Light Theme */
-  --color-very-light-gray: hsl(0, 0%, 98%);
-  --color-very-light-grayish-blue: hsl(236, 33%, 92%);
-  --color-light-grayish-blue: hsl(233, 11%, 84%);
-  --color-dark-grayish-blue: hsl(236, 9%, 61%);
-  --color-very-dark-grayish-blue: hsl(235, 19%, 35%);
-  --color-gradient-start: hsl(192, 100%, 67%);
-  --color-gradient-end: hsl(280, 87%, 65%);
-
   /* Dark Theme */
   --color-very-dark-blue: hsl(235, 21%, 11%);
   --color-very-dark-desaturated-blue: hsl(235, 24%, 19%);
@@ -48,20 +39,12 @@ button {
   background-position: top center;
   background-size: contain;
 }
-/* Theme LIGHT */
-.wrapper.light {
-  background-color: var(--color-very-light-gray);
-  color: var(--color-dark-grayish-blue);
-}
-.wrapper.light input[type="checkbox"],
-.wrapper.light button {
-  color: var(--color-dark-grayish-blue);
-}
 
 /* Theme DARK */
 .wrapper.dark {
   background-color: var(--color-very-dark-blue);
   color: var(--color-dark-dark-grayish-blue);
+  min-height: 100vh;
 }
 
 .container {
@@ -140,6 +123,7 @@ h1 {
 .wrapper.dark .checkbox,
 .wrapper.dark .todo-input {
   background-color: var(--color-very-dark-desaturated-blue);
+  color: white;
 }
 
 .form-control form {
@@ -242,16 +226,4 @@ h1 {
 .wrapper.dark .btn.active {
   color: var(--color-gradient-start);
   font-weight: 700;
-}
-
-/* Footer Component */
-footer {
-  line-height: 1.5;
-  text-align: center;
-}
-a {
-  color: var(--color-gradient-end);
-}
-a:visited {
-  color: var(--color-light-grayish-blue);
 }

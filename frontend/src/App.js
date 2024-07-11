@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
 import TodoForm from "./components/TodoForm";
-import Footer from "./components/Footer";
 import TodoList from "./components/TodoList";
 
 const data = [
@@ -15,11 +14,8 @@ const data = [
 
 function App() {
   const [todos, setTodos] = useState(data);
-  const [themeLight, setThemeLight] = useState(true);
   const [filterStatus, setFilterStatus] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState(todos);
-
-  const themeClass = themeLight ? "light" : "dark";
 
   useEffect(() => {
     const handleFilter = () => {
@@ -38,9 +34,9 @@ function App() {
   }, [todos, filterStatus]);
 
   return (
-    <div className={`wrapper ${themeClass}`}>
+    <div className="wrapper dark">
       <div className="container">
-        <Header themeLight={themeLight} setThemeLight={setThemeLight} />
+        <Header />
         <main>
           <TodoForm todos={todos} setTodos={setTodos} />
           <TodoList
@@ -51,7 +47,6 @@ function App() {
             setFilterStatus={setFilterStatus}
           />
         </main>
-        <Footer />
       </div>
     </div>
   );
