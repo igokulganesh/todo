@@ -65,16 +65,16 @@ public class TodoController {
 
 	@GetMapping("/completed")
 	public List<TodoModel> getCompletedTodo() {
-		return null;
+		return todoList.stream().filter(todo -> todo.isCompleted()).toList();
 	}
 
 	@GetMapping("/notCompleted")
 	public List<TodoModel> getNotCompletedTodo() {
-		return null;
+		return todoList.stream().filter(todo -> !todo.isCompleted()).toList();
 	}
 
 	@DeleteMapping("/clearCompleted")
 	public void clearCompletedTodo() {
-
+		todoList.removeIf(todo -> todo.isCompleted());
 	}
 }
