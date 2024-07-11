@@ -4,22 +4,16 @@ import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 import { fetchTodo } from "./api.ts";
 
-const data = [
-  { id: 1, content: "Complete online JavsScript course", completed: true },
-  { id: 2, content: "Jog around the park 3x", completed: false },
-  { id: 3, content: "10 minutes meditation", completed: false },
-  { id: 4, content: "Read for 1 hour", completed: false },
-  { id: 5, content: "Pick up groceries", completed: false },
-  { id: 6, content: "Complete Todo App on Frontend Mentor", completed: false },
-];
-
 function App() {
-  const [todos, setTodos] = useState(data);
+  const [todos, setTodos] = useState([]);
   const [filterStatus, setFilterStatus] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState(todos);
 
-  const todoData = fetchTodo();
-  console.log(todoData);
+  useEffect(() => {
+    fetchTodo().then((data) => setTodos(data));
+  }, []);
+
+  console.log(todos);
 
   useEffect(() => {
     const handleFilter = () => {
