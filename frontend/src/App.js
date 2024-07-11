@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
+import { fetchTodo } from "./api.ts";
 
 const data = [
   { id: 1, content: "Complete online JavsScript course", completed: true },
@@ -16,6 +17,9 @@ function App() {
   const [todos, setTodos] = useState(data);
   const [filterStatus, setFilterStatus] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState(todos);
+
+  const todoData = fetchTodo();
+  console.log(todoData);
 
   useEffect(() => {
     const handleFilter = () => {
