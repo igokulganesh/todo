@@ -1,36 +1,21 @@
 import React, { useState } from "react";
-
-const generateId = (array) => {
-  const ids = array.map((item) => item.id);
-  return Math.max(...ids) + 1;
-};
+import { Button } from "primereact/button";
+import { createTodo, fetchTodo } from "../api.ts";
 
 const TodoForm = ({ todos, setTodos }) => {
   const [todoInput, setTodoInput] = useState("");
 
-  const handleChange = (e) => {
-    setTodoInput(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (todoInput) {
-      const newTodo = {
-        id: generateId(todos),
-        content: todoInput.trim(),
-        completed: false,
-      };
-
-      setTodos([newTodo, ...todos]);
+      await createTodo(todoInput.trim());
+      fetchTodo().then((data) => setTodos(data));
       setTodoInput("");
     }
   };
 
   return (
     <div className="form-control">
-      <div className="checkbox-border-wrap">
-        <span className="checkbox"></span>
-      </div>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -39,12 +24,15 @@ const TodoForm = ({ todos, setTodos }) => {
           id="todoInput"
           placeholder="Create a new todo..."
           value={todoInput}
-          onChange={handleChange}
+          onChange={(e) => setTodoInput(e.target.value)}
         />
-        <button id="submitNewTodo" type="submit">
-          Add
-        </button>
       </form>
+      <Button
+        onClick={handleSubmit}
+        icon="pi pi-plus"
+        size="large"
+        severity="secondary"
+      />
     </div>
   );
 };

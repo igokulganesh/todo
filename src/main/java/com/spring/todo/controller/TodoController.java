@@ -28,8 +28,9 @@ public class TodoController {
 	}
 
 	@PostMapping
-	public void addTodo(@RequestBody TodoModel todo) {
+	public int addTodo(@RequestBody TodoModel todo) {
 		todoList.add(todo);
+		return todo.getId();
 	}
 
 	@GetMapping("/{id}")

@@ -21,3 +21,13 @@ export const fetchTodoById = async (id: number) => {
     throw error;
   }
 };
+
+export const createTodo = async (value: string) => {
+  try {
+    const response = await axios.post(API_BASE_URL, { value });
+    return response.data;
+  } catch (error) {
+    console.error("Error creating item:", error);
+    throw error;
+  }
+};
