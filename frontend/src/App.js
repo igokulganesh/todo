@@ -13,8 +13,6 @@ function App() {
     fetchTodo().then((data) => setTodos(data));
   }, []);
 
-  console.log(todos);
-
   useEffect(() => {
     const handleFilter = () => {
       switch (filterStatus) {

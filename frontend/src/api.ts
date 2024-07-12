@@ -59,3 +59,12 @@ export const deleteTodoApi = async (id: number) => {
     console.error("Error:", error);
   }
 };
+
+export const deleteCompletedTodoApi = async () => {
+  try {
+    const response = await axios.delete(`${API_BASE_URL}/clearCompleted`);
+    return response.data;
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};

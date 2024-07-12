@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TodoItem from "./TodoItem.js";
 import TodoFilterControl from "./TodoFilterControl";
+import { deleteCompletedTodoApi, fetchTodo } from "../api.ts";
 
 const TodoList = ({
   todos,
@@ -18,8 +19,9 @@ const TodoList = ({
 
   const textPlacer = filterStatus === "completed" ? "closed task" : "task";
 
-  const clearCompletedTodos = () => {
-    setTodos(todos.filter((todo) => !todo.completed));
+  const clearCompletedTodos = async () => {
+    await deleteCompletedTodoApi();
+    fetchTodo().then((data) => setTodos(data));
     setFilterStatus("all");
   };
 
@@ -56,16 +58,6 @@ const TodoList = ({
               Clear Completed
             </button>
           </div>
-        </div>
-      </section>
-
-      {/* For Mobile */}
-      <section className="filter-control-for-mobile">
-        <div className="control-btn group">
-          <TodoFilterControl
-            filterStatus={filterStatus}
-            setFilterStatus={setFilterStatus}
-          />
         </div>
       </section>
     </>
