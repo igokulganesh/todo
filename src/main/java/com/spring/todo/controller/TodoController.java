@@ -34,23 +34,23 @@ public class TodoController {
 	}
 
 	@GetMapping("/{id}")
-	public TodoModel getTopicById(@PathVariable int id) {
+	public TodoModel getTopicById(@PathVariable Integer id) {
 		return todoList.stream().filter(todo -> todo.getId() == id).findFirst().get();
 	}
 
 	@GetMapping("/toggle/{id}")
-	public void toggleTodo(@PathVariable int id) {
+	public void toggleTodo(@PathVariable Integer id) {
 		for (int i = 0; i < todoList.size(); i++) {
 			TodoModel todo = todoList.get(i);
 			if (todo.getId() == id) {
-				todo.setCompleted(!todo.isCompleted());
+				todo.setCompleted(!todo.getCompleted());
 				break;
 			}
 		}
 	}
 
 	@PutMapping("/{id}")
-	public void updateTodo(@RequestBody TodoModel todo, @PathVariable int id) {
+	public void updateTodo(@RequestBody TodoModel todo, @PathVariable Integer id) {
 		for (int i = 0; i < todoList.size(); i++) {
 			TodoModel t = todoList.get(i);
 			if (t.getId() == id) {
@@ -61,27 +61,27 @@ public class TodoController {
 	}
 
 	@DeleteMapping("/{id}")
-	public void deleteTodo(@PathVariable int id) {
+	public void deleteTodo(@PathVariable Integer id) {
 		todoList.removeIf(todo -> todo.getId() == id);
 	}
 
 	@GetMapping("/completed")
 	public List<TodoModel> getCompletedTodo() {
-		return todoList.stream().filter(todo -> todo.isCompleted()).toList();
+		return todoList.stream().filter(todo -> todo.getCompleted()).toList();
 	}
 
-	@GetMapping("/notCompleted")
+	@GetMapping("/active")
 	public List<TodoModel> getNotCompletedTodo() {
-		return todoList.stream().filter(todo -> !todo.isCompleted()).toList();
+		return todoList.stream().filter(todo -> !todo.getCompleted()).toList();
 	}
 
 	@DeleteMapping("/clearCompleted")
 	public void clearCompletedTodo() {
-		todoList.removeIf(todo -> todo.isCompleted());
+		todoList.removeIf(todo -> todo.getCompleted());
 	}
 
-	@GetMapping("/getCountNotCompleted")
-	public int getMethodName(@RequestParam String param) {
+	@GetMapping("/getActiveCount")
+	public int getActiveCount(@RequestParam String param) {
 		return getNotCompletedTodo().size();
 	}
 }

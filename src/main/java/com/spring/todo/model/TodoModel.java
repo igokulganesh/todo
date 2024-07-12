@@ -5,27 +5,27 @@ public class TodoModel {
 
 	private int id;
 	private String value;
-	private boolean isCompleted;
+	private boolean completed;
 
 	public TodoModel() {
 		super();
 		this.id = getUniqueID();
 		this.value = "";
-		this.isCompleted = false;
+		this.completed = false;
 	}
 
 	public TodoModel(String value) {
 		super();
 		this.id = getUniqueID();
 		this.value = value;
-		this.isCompleted = false;
+		this.completed = false;
 	}
 
-	public TodoModel(String value, boolean isCompleted) {
+	public TodoModel(String value, boolean completed) {
 		super();
 		this.id = getUniqueID();
 		this.value = value;
-		this.isCompleted = isCompleted;
+		this.completed = completed;
 	}
 
 	public static int getUniqueID() {
@@ -50,11 +50,11 @@ public class TodoModel {
 		this.id = id;
 	}
 
-	public boolean isCompleted() {
-		return isCompleted;
+	public boolean getCompleted() {
+		return completed;
 	}
 
-	public void setCompleted(boolean isCompleted) {
-		this.isCompleted = isCompleted;
+	public void setCompleted(boolean completed) {
+		this.completed = completed;
 	}
 }
